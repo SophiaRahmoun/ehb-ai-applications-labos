@@ -1,6 +1,6 @@
 from huggingface_hub import InferenceClient
 
-from hulp import evalueer
+from .hulp import evalueer
 
 hf = InferenceClient()
 MODEL = "nlptown/bert-base-multilingual-uncased-sentiment"

@@ -2,7 +2,7 @@ import time
 
 from openai import InternalServerError, OpenAI, RateLimitError
 
-from hulp import evalueer
+from .hulp import evalueer
 
 GOOGLE = "https://generativelanguage.googleapis.com/v1beta/openai/"
 llm = OpenAI(base_url=GOOGLE, max_retries=0)

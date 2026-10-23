@@ -1,4 +1,4 @@
-from hulp import evalueer
+from .hulp import evalueer
 from lokaal import model
 from taalmodel import voorspel_met_taalmodel
 

@@ -1,4 +1,4 @@
-from hulp import evalueer
+from .hulp import evalueer
 
 
 def voorspel_met_regel(tekst):

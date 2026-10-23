@@ -1,6 +1,6 @@
 from openai import OpenAI
 
-from hulp import evalueer
+from .hulp import evalueer
 
 OLLAMA = "http://localhost:11434/v1"
 llm = OpenAI(base_url=OLLAMA, api_key="ollama")
