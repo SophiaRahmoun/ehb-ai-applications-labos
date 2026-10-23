@@ -27,7 +27,7 @@ def lees(bestand):
         return [(rij["tekst"], rij["label"]) for rij in csv.DictReader(csv_bestand)]
 
 
-BERICHTEN = lees("berichten.csv")
+BERICHTEN = lees("nieuwe_berichten.csv")
 
 
 def evalueer(functie, bestand="berichten.csv"):
