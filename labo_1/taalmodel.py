@@ -5,7 +5,7 @@ from openai import InternalServerError, OpenAI, RateLimitError
 from .hulp import evalueer
 
 GOOGLE = "https://generativelanguage.googleapis.com/v1beta/openai/"
-llm = OpenAI(base_url=GOOGLE, max_retries=0)
+llm = OpenAI(base_url=GOOGLE, max_retries=0, timeout=30.0)
 MODEL = "gemini-3.5-flash-lite"
 #MODEL="gemma-4-26b-a4b-it"
 

@@ -22,6 +22,34 @@ Ticket: """
 # met categorie, taal, klantnummer en factuurnummer.
 SCHEMA = {
     "type": "object",
+     "properties": {
+        "categorie": {
+            "type": "string",
+            "enum": [
+                "facturatie",
+                "levering",
+                "defect",
+                "account",
+                "verhuur"
+            ]
+        },
+        "taal": {
+            "type": "string",
+            "enum": ["nl", "fr"]
+        },
+        "klantnummer": {
+            "type": ["string", "null"] #kan null (afwezig) of string bvb "K194" zijn 
+        },
+        "factuurnummer": {
+            "type": ["string", "null"]
+        }
+    },
+    "required": [ #moeten altijd verschijnen zelfs wnr null 
+        "categorie",
+        "taal",
+        "klantnummer",
+        "factuurnummer"
+    ]
 }
 
 

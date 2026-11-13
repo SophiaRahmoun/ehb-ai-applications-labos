@@ -29,7 +29,18 @@ def lees_met_prompt(tekst):
         print("  Google antwoordt niet: 20 seconden wachten")
         time.sleep(20)
         return lees_met_prompt(tekst)
-    return json.loads(antwoord.choices[0].message.content)
+   
+    inhoud = antwoord.choices[0].message.content
+    inhoud = inhoud.strip()
 
+    if inhoud.startswith("```json"):
+        inhoud = inhoud[7:]
+    elif inhoud.startswith("```"):
+        inhoud = inhoud[3:]
+
+    if inhoud.endswith("```"):
+        inhoud = inhoud[:-3]
+
+    return json.loads(inhoud.strip())
 
 evalueer(lees_met_prompt)
