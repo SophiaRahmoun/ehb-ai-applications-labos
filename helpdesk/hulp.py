@@ -5,7 +5,7 @@
   toont ze, en evalueer meet erop
 - probeer(functie): stuurt elke tekst uit voorbeelden.csv naar je functie en toont wat
   ze teruggeeft
-- evalueer(functie, veld): vergelijkt per voorbeeld het veld uit je dictionary met de
+- evalueer(functie, veld): vergelijkt per voorbeeld het veld uit je antwoord met de
   kolom met dezelfde naam in voorbeelden.csv, en toont hoeveel er juist zijn en hoe lang
   je functie erover deed
 - voor RAG, zoals in labo 3: stukken (de alinea's van de documenten in de map
@@ -18,6 +18,7 @@ from pathlib import Path
 
 import numpy as np
 from dotenv import load_dotenv
+from pydantic import BaseModel
 from rich.console import Console
 from rich.table import Table
 
@@ -80,12 +81,14 @@ def probeer(functie):
     tabel.add_column("antwoord van je functie")
     for voorbeeld in voorbeelden:
         uitkomst = functie(voorbeeld["tekst"])
+        if isinstance(uitkomst, BaseModel):
+            uitkomst = uitkomst.model_dump()
         if uitkomst is None:
             tekst = "[yellow]None: nog niet gemaakt[/]"
         elif isinstance(uitkomst, dict):
             tekst = "\n".join(f"{sleutel}: {als_tekst(uitkomst[sleutel])}" for sleutel in uitkomst)
         else:
-            tekst = f"[red]geen dictionary maar {type(uitkomst).__name__}[/]"
+            tekst = f"[red]geen dictionary of Pydantic-object maar {type(uitkomst).__name__}[/]"
         tabel.add_row(voorbeeld["tekst"], tekst)
     console.print(tabel)
 
@@ -105,6 +108,8 @@ def evalueer(functie, veld):
         if not voorbeeld[veld]:
             continue
         uitkomst = functie(voorbeeld["tekst"])
+        if isinstance(uitkomst, BaseModel):
+            uitkomst = uitkomst.model_dump()
         gemeten = gemeten + 1
         if isinstance(uitkomst, dict) and als_tekst(uitkomst.get(veld)).lower() == voorbeeld[veld].strip().lower():
             juist = juist + 1

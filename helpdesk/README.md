@@ -45,18 +45,6 @@ ollama pull embeddinggemma
 
 ---
 
-## Een stap proberen
-
-In de map van de app:
-
-```bash
-uv run toon.py
-uv run lezen.py
-uv run antwoord.py
-```
-
----
-
 ## De app starten
 
 ```bash
@@ -77,7 +65,6 @@ Open <http://127.0.0.1:8000>. Sla je een bestand op, dan herstart de server vanz
 | `Missing credentials` | er is geen `.env`, of hij staat niet in de hoofdmap van de repo |
 | `RateLimitError` of `429` | te veel vragen aan Google in één minuut: wacht een minuut |
 | `503` en "high demand" | Google is druk: probeer het opnieuw |
-| "nog niet gemaakt" op de pagina | die stap geeft nog `None` terug |
 | je wilt opnieuw beginnen met de acht tickets | stop de app, verwijder `helpdesk.db`, en start de app opnieuw |
 | "Fout: kijk in de terminal van je API" | een stap loopt vast: de fout staat in de terminal waar `fastapi dev` draait |
 | `Connection refused` of `could not connect` bij Ollama | start de Ollama-app, of `ollama serve` in een aparte terminal |
