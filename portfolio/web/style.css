@@ -1,3 +1,21 @@
-/* De opmaak komt van Pico CSS (picocss.com). Hier staat alleen wat Pico niet doet. */
-:root { --pico-font-size: 90%; }
-.nog-niet { color: var(--pico-muted-color); font-style: italic; }
+/* De opmaak van je app. Pas ze gerust aan. */
+
+/* Basis */
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; font-size: 15px; color: #222; background: #f3f5f8; }
+main { max-width: 860px; margin: 2rem auto; padding: 0 1rem; }
+h1 { color: #e2231a; }
+small { color: #5f6b7a; }
+
+/* Het formulier */
+select, textarea { display: block; width: 100%; margin-bottom: 0.6rem; padding: 0.6rem; font: inherit; border: 1px solid #dde2e8; border-radius: 8px; }
+button { padding: 0.5rem 1.1rem; font: inherit; color: white; background: #e2231a; border: none; border-radius: 8px; cursor: pointer; }
+button.secondary { color: #222; background: #e8edf3; }
+
+/* Het antwoord van elke stap, en wat bewaard is */
+article, details { margin: 1rem 0; padding: 0.8rem 1.2rem; background: white; border: 1px solid #dde2e8; border-radius: 10px; }
+article header { font-weight: 600; margin-bottom: 0.5rem; }
+summary { cursor: pointer; }
+table { width: 100%; border-spacing: 0; }
+td { padding: 0.3rem 0.4rem; vertical-align: top; border-top: 1px solid #f0f2f5; }
+.nog-niet { color: #8a5a00; font-style: italic; }

@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from hulp import voorbeelden
+from hulp import altijd_vers, voorbeelden
 from opslag import alle_resultaten, bewaar
 from stap1 import stap1
 from stap2 import stap2
@@ -38,4 +38,6 @@ def bewaar_resultaat(resultaat: Resultaat):
     bewaar(resultaat.tekst, resultaat.resultaat)
 
 
+# Zo ziet de browser elke wijziging in web/ meteen.
+altijd_vers(app)
 app.mount("/", StaticFiles(directory="web", html=True))

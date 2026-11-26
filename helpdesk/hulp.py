@@ -113,3 +113,12 @@ def evalueer(functie, veld):
         return
     seconden = (time.perf_counter() - start) / gemeten
     console.print(f"[bold]{veld}: {juist}/{gemeten} juist[/] · {seconden:.2f} seconden per voorbeeld")
+
+
+def altijd_vers(app):
+    """Laat de browser bij elke keer laden nakijken of een bestand veranderd is."""
+    @app.middleware("http")
+    async def geen_cache(request, call_next):
+        antwoord = await call_next(request)
+        antwoord.headers["Cache-Control"] = "no-cache"
+        return antwoord

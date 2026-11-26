@@ -28,19 +28,21 @@ async function laadInbox() {
   toonLijst();
 }
 
-async function kies(ticket) {
+function kies(ticket) {
   gekozen = ticket;
   toonLijst();
-  if (!ticket.analyse) {
-    toonDetail(ticket, "Je API leest het ticket…");
-    const antwoord = await fetch(`/analyse?tekst=${encodeURIComponent(ticket.tekst)}`);
-    if (!antwoord.ok) {
-      toonDetail(ticket, "Fout: kijk in de terminal van je API.");
-      return;
-    }
-    ticket.analyse = await antwoord.json();
-    toonLijst();
+  toonDetail(ticket);
+}
+
+// Stuurt de tekst van het ticket naar /analyse en toont wat de drie stappen zeggen.
+async function analyseer(ticket) {
+  toonDetail(ticket, "Bezig met analyseren…");
+  const antwoord = await fetch(`/analyse?tekst=${encodeURIComponent(ticket.tekst)}`);
+  if (!antwoord.ok) {
+    toonDetail(ticket, "Fout: kijk in de terminal van je API.");
+    return;
   }
+  ticket.analyse = await antwoord.json();
   if (gekozen === ticket) toonDetail(ticket);
 }
 
@@ -112,7 +114,6 @@ function antwoord(ticket) {
   const door = element("button", `Doorsturen naar ${team}`, "secondary");
   door.onclick = () => handelAf(ticket, `naar ${team}`, null);
   blok.append(verstuur, " ", door);
-  if (ticket.status) blok.append(element("p", `Status: ${ticket.status}`));
   return blok;
 }
 
@@ -135,11 +136,21 @@ async function handelAf(ticket, status, antwoord) {
 
 function toonDetail(ticket, melding) {
   detail.replaceChildren(element("h2", ticket.afzender));
+  if (ticket.analyse) detail.append(kenmerken(ticket.analyse));
+  detail.append(element("blockquote", ticket.tekst));
+  if (ticket.status) detail.append(element("p", `Status: ${ticket.status}`));
   if (melding) {
-    detail.append(element("p", melding), element("blockquote", ticket.tekst));
+    detail.append(element("p", melding));
     return;
   }
-  detail.append(kenmerken(ticket.analyse), element("blockquote", ticket.tekst), antwoord(ticket));
+  const knop = element("button", "Analyseer");
+  if (ticket.analyse) {
+    knop.textContent = "Opnieuw analyseren";
+    knop.className = "secondary";
+  }
+  knop.onclick = () => analyseer(ticket);
+  detail.append(knop);
+  if (ticket.analyse) detail.append(antwoord(ticket));
 }
 
 laadInbox();

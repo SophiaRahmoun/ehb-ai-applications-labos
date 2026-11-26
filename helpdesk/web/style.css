@@ -1,11 +1,45 @@
-/* De opmaak komt van Pico CSS (picocss.com). Hier staat alleen wat Pico niet doet. */
-:root { --pico-font-size: 90%; }
-h2 { font-size: 1.4rem; }
-.scherm { display: grid; grid-template-columns: 320px 1fr; gap: 2rem; }
-#tickets { padding: 0; }
-#tickets li { list-style: none; padding: 0.6rem 0.8rem; border-radius: 8px; cursor: pointer; }
-#tickets li:hover, #tickets li.gekozen { background: var(--pico-secondary-background); color: var(--pico-secondary-inverse); }
-#tickets li.gekozen small { color: inherit; }
+/* De opmaak van de helpdesk: index.html en nieuw.html. */
+
+/* Basis */
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; font-size: 15px; color: #222; background: #f3f5f8; }
+h2 { margin: 0 0 1rem; font-size: 1.3rem; }
+small { color: #5f6b7a; }
+
+/* De balk bovenaan */
+body > header { display: flex; justify-content: space-between; padding: 0.8rem 1.5rem; background: #222; }
+body > header strong::before { content: "● "; color: #e2231a; }
+body > header strong, body > header a { color: white; text-decoration: none; }
+
+/* Twee kolommen: de inbox en het ticket */
+.scherm { display: grid; grid-template-columns: 320px 1fr; gap: 1.5rem; padding: 1.5rem; }
+
+/* Witte vlakken */
+aside, table, blockquote, article, form { background: white; border: 1px solid #dde2e8; border-radius: 10px; }
+aside { padding: 1rem; align-self: start; }
+
+/* De inbox */
+#tickets { list-style: none; margin: 0; padding: 0; }
+#tickets li { padding: 0.6rem 0.8rem; border-radius: 6px; cursor: pointer; }
+#tickets li:hover { background: #f3f5f8; }
+#tickets li.gekozen { background: #fdeceb; box-shadow: inset 3px 0 #e2231a; }
 #tickets small { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.negatief { color: var(--pico-del-color); font-weight: bold; }
-.nog-niet { color: var(--pico-muted-color); font-style: italic; }
+
+/* Het ticket: de kenmerken, het bericht en het antwoord */
+table { width: 100%; border-spacing: 0; margin-bottom: 1rem; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; }
+th { font-size: 0.8rem; font-weight: normal; color: #5f6b7a; }
+td { font-weight: 600; }
+blockquote { margin: 0 0 1rem; padding: 1rem 1.2rem; line-height: 1.5; }
+article { margin-top: 1rem; padding: 1rem 1.2rem; }
+article header { font-weight: 600; margin-bottom: 0.5rem; }
+article blockquote { background: #f7f9fb; border: none; border-left: 4px solid #e2231a; border-radius: 6px; }
+.negatief { color: #b3170f; }
+.nog-niet { color: #8a5a00; font-weight: normal; font-style: italic; }
+
+/* Formulieren en knoppen */
+form { max-width: 520px; margin: 2rem auto; padding: 1.5rem; }
+label { display: block; }
+textarea, input { display: block; width: 100%; margin: 0.3rem 0 0.8rem; padding: 0.6rem; font: inherit; border: 1px solid #dde2e8; border-radius: 8px; }
+button { padding: 0.5rem 1.1rem; font: inherit; color: white; background: #e2231a; border: none; border-radius: 8px; cursor: pointer; }
+button.secondary { color: #222; background: #e8edf3; }

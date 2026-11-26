@@ -46,7 +46,7 @@ function stap(naam, data) {
 
 document.querySelector("#formulier").addEventListener("submit", async (event) => {
   event.preventDefault();
-  stappen.replaceChildren(element("p", "Je API leest de tekst…"));
+  stappen.replaceChildren(element("p", "Bezig met analyseren…"));
   const start = performance.now();
   const antwoord = await fetch(`/analyse?tekst=${encodeURIComponent(tekst.value)}`);
   if (!antwoord.ok) {

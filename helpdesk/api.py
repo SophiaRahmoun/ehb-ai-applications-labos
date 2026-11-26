@@ -3,6 +3,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from antwoord import stel_antwoord_voor
+from hulp import altijd_vers
 from lezen import lees_ticket
 from opslag import alle_tickets, handel_af, nieuw_ticket
 from toon import bepaal_toon
@@ -40,4 +41,6 @@ def maak_ticket(ticket: NieuwTicket):
 # 2. Schrijf het endpoint. Bewaar met handel_af uit opslag.py.
 
 
+# Zo ziet de browser elke wijziging in web/ meteen.
+altijd_vers(app)
 app.mount("/", StaticFiles(directory="web", html=True))
