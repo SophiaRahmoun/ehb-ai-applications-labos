@@ -9,9 +9,9 @@ cd portfolio
 uv run fastapi dev api.py
 ```
 
-## De vragen
+## Vragen over je app
 
-Antwoord kort, met je eigen cijfers waar het kan.
+Voorbeelden van vragen die je bij de verdediging kan krijgen. Je hoeft dit niet in te dienen; schrijf gerust je antwoorden op om je voor te bereiden, met je eigen cijfers waar het kan.
 
 1. Welke modellen gebruik je, en waarom deze? Denk aan de kwaliteit op je eigen voorbeelden, de snelheid, de kosten, en of het model via een API of op je laptop draait.
 2. Wat zegt de model card van elk model (waarvoor, talen, trainingsdata, licentie, benchmark), en klopt dat met je eigen meting?
