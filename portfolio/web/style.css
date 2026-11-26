@@ -1,0 +1,3 @@
+/* De opmaak komt van Pico CSS (picocss.com). Hier staat alleen wat Pico niet doet. */
+:root { --pico-font-size: 90%; }
+.nog-niet { color: var(--pico-muted-color); font-style: italic; }

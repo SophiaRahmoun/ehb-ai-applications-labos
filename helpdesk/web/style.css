@@ -1,0 +1,11 @@
+/* De opmaak komt van Pico CSS (picocss.com). Hier staat alleen wat Pico niet doet. */
+:root { --pico-font-size: 90%; }
+h2 { font-size: 1.4rem; }
+.scherm { display: grid; grid-template-columns: 320px 1fr; gap: 2rem; }
+#tickets { padding: 0; }
+#tickets li { list-style: none; padding: 0.6rem 0.8rem; border-radius: 8px; cursor: pointer; }
+#tickets li:hover, #tickets li.gekozen { background: var(--pico-secondary-background); color: var(--pico-secondary-inverse); }
+#tickets li.gekozen small { color: inherit; }
+#tickets small { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.negatief { color: var(--pico-del-color); font-weight: bold; }
+.nog-niet { color: var(--pico-muted-color); font-style: italic; }

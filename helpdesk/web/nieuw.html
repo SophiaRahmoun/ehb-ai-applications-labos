@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="nl" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nieuw ticket</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.red.min.css">
+</head>
+<body>
+  <header class="container-fluid">
+    <nav>
+      <ul><li><strong>Helpdesk</strong></li></ul>
+      <ul><li><a href="index.html">Inbox</a></li></ul>
+    </nav>
+  </header>
+  <main class="container" style="max-width: 560px">
+    <form>
+      <h2>Nieuw ticket</h2>
+      <label>Naam <input id="afzender" required></label>
+      <label>Bericht <textarea id="tekst" rows="5" required></textarea></label>
+      <button>Versturen</button>
+    </form>
+  </main>
+  <script type="module">
+    // Stuurt het ticket naar de API, die het in de databank bewaart. Daarna terug naar de inbox.
+    document.querySelector("form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      await fetch("/tickets", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          afzender: document.querySelector("#afzender").value,
+          tekst: document.querySelector("#tekst").value,
+        }),
+      });
+      location.href = "index.html";
+    });
+  </script>
+</body>
+</html>
