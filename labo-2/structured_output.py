@@ -15,42 +15,45 @@ Geef JSON met deze velden:
 - taal: nl of fr
 - klantnummer: zoals K12345, of null
 - factuurnummer: zoals F2026-1234, of null
+"Het bestelnummer begint met VB, gevolgd door 6 cijfers, bijvoorbeeld VB893949. "
+"Als er geen bestelnummer is, gebruik null. "
 
 Ticket: """
 
 # Opdracht: beschrijf hier het antwoord als JSON Schema: een object
 # met categorie, taal, klantnummer en factuurnummer.
+
+
 SCHEMA = {
     "type": "object",
-     "properties": {
+    "properties": {
         "categorie": {
             "type": "string",
-            "enum": [
-                "facturatie",
-                "levering",
-                "defect",
-                "account",
-                "verhuur"
-            ]
+            "enum": ["facturatie", "levering", "defect", "account", "verhuur"]
         },
         "taal": {
             "type": "string",
             "enum": ["nl", "fr"]
         },
         "klantnummer": {
-            "type": ["string", "null"] #kan null (afwezig) of string bvb "K194" zijn 
+            "type": ["string", "null"]
         },
         "factuurnummer": {
             "type": ["string", "null"]
+        },
+        "bestelnummer": {
+            "type": ["string", "null"]
         }
     },
-    "required": [ #moeten altijd verschijnen zelfs wnr null 
+    "required": [
         "categorie",
         "taal",
         "klantnummer",
-        "factuurnummer"
+        "factuurnummer",
+        "bestelnummer"
     ]
 }
+
 
 
 def lees_met_schema(tekst):

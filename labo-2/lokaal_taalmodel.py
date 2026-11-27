@@ -15,11 +15,12 @@ def lees_met_lokaal_taalmodel(tekst):
         model=MODEL,
         messages=[{"role": "user", "content": PROMPT + tekst}],
         response_format={
-            "type": "json_schema",
-            "json_schema": {"name": "ticket", "schema": SCHEMA},
-        },
+             "type": "json_schema",
+             "json_schema": {"name": "ticket", "schema": SCHEMA},
+         },
     )
     return json.loads(antwoord.choices[0].message.content)
 
 
-evalueer(lees_met_lokaal_taalmodel)
+if __name__ == "__main__":
+    evalueer(lees_met_lokaal_taalmodel)

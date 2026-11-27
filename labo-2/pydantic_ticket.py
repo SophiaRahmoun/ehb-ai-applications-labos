@@ -9,11 +9,11 @@ from structured_output import MODEL, PROMPT, llm
 
 
 class Ticket(BaseModel):
-    categorie: Literal["facturatie", "levering", "defect",
-                       "account", "verhuur"]
+    categorie: Literal["facturatie", "levering", "defect", "account", "verhuur"]
     taal: Literal["nl", "fr"]
     klantnummer: str | None
     factuurnummer: str | None
+    bestelnummer: str | None
 
 
 def lees_met_pydantic(tekst):
